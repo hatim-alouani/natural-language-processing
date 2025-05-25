@@ -39,6 +39,7 @@ classifier.fit(x_train, y_train)
 # Predicting the Test set results
 y_pred = classifier.predict(x_test)
 
+
 # Making the Confusion Matrix
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test, y_pred)
