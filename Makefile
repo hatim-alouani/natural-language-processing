@@ -22,5 +22,5 @@ rm:
 push:
 	@git add .
 	@git commit -m "nlp"
-	@git remote set-url origin git@github.com:hatim-alouani/natural-language-processing-.git
+	@git remote set-url origin git@github.com:hatim-alouani/natural-language-processing.git
 	@git push
