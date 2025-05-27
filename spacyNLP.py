@@ -1,4 +1,12 @@
 import spacy
+from nltk.tokenize import word_tokenize, sent_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer, PorterStemmer
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from gensim.models import Word2Vec, KeyedVectors, FastText
+
+english = spacy.load("en_core_web_sm") #english library
+text = english('NLP is a fascinating technique! I started learning it 2 days ago.')
 
 def tokenization_infos(text):
     for token in text:
@@ -13,7 +21,6 @@ def tokenization_infos(text):
 def tokenization_words(text):
     for token in text:
         print(token.text, end=' | ')
-
 
 def tokenization_sentences(text):
     return [token.text for token in text.sents]
@@ -35,33 +42,15 @@ def cleaning(text):
     text = ' '.join(tokens)
     return english(text)
 
-if __name__=="__main__":
-    english = spacy.load("en_core_web_sm") #english library
-    text = english('NLP is a fascinating technique! I started learning it 2 days ago.')
-    print("Original text:")
-    print(text)
+def bow(text):
+    cv = CountVectorizer()
+    x = cv.fit_transform(text).toarray()
+    return x
 
-    print('\n Sentence Tokenization:')
-    tokenization_sentences(text)
+def TF_IDF(test):
+    tv = TfidfVectorizer()
+    x = tf.fit_transform(text)
 
-    print('\n Word Tokenization:')
-    tokenization_words(text)
-
-    print('\n lemmatization :')
-    lemmatization(text)
-
-    print('\n grammatical role:')
-    grammatical_role(text)
-
-    print("\n Cleaned text:")
-    text = cleaning(text)
-    print(text)
-
-    print("\n Tokenization After removing stopwords:")
-    tokens = stop_words(text)
-    print(tokens)
-
-
-
-
-
+def Word2Vec(tokens):
+    cbow= Word2Vec(sentences=tokens, vector_size=200, window=3, min_count=1, workers=4, sg=0)
+    return cbow
