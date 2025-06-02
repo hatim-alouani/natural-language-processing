@@ -1,7 +1,7 @@
 import nltk
 import re
 from nltk.tokenize import word_tokenize, sent_tokenize
-from nltk.stem import WordNetLemmatizer
+from nltk.stem import WordNetLemmatizer, PorterStemmer
 from nltk.corpus import stopwords
 
 nltk.download("punkt")
@@ -17,6 +17,9 @@ def tokenization_sentences(text):
 
 def lemmatization(tokens):
     return [WordNetLemmatizer().lemmatize(token) for token in tokens]
+
+def stemming(tokens):
+    return [PorterStemmer().stem(token) for token in tokens]
 
 def stop_words(tokens):
     return [token for token in tokens if token.lower() not in stopwords.words('english')]
